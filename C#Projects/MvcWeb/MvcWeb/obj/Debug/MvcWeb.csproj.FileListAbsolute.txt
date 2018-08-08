@@ -1,0 +1,5 @@
+C:\liying\github\codeRep\VSProjects\MvcWeb\MvcWeb\bin\MvcWeb.dll
+C:\liying\github\codeRep\VSProjects\MvcWeb\MvcWeb\bin\MvcWeb.pdb
+C:\liying\github\codeRep\VSProjects\MvcWeb\MvcWeb\obj\Debug\MvcWeb.csprojResolveAssemblyReference.cache
+C:\liying\github\codeRep\VSProjects\MvcWeb\MvcWeb\obj\Debug\MvcWeb.dll
+C:\liying\github\codeRep\VSProjects\MvcWeb\MvcWeb\obj\Debug\MvcWeb.pdb

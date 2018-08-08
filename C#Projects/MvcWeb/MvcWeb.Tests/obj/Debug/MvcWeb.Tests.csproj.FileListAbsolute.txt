@@ -1,0 +1,1 @@
+C:\liying\github\codeRep\VSProjects\MvcWeb\MvcWeb.Tests\obj\Debug\MvcWeb.Tests.csprojResolveAssemblyReference.cache

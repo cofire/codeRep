@@ -1,0 +1,37 @@
+1、环境
+    java 1.8
+
+2、编辑器idea或者eclipse
+
+3、搭建springboot
+    
+    idea：http://blog.csdn.net/linzhiqiang0316/article/details/52589789
+    
+    步骤：
+        1、步骤一：在IDEA中新建一个常规的maven项目
+        2、修改配置文件(在文件夹中)
+        3、更新maven依赖包（注意：自己新建一个仓库，以后需要用到maven依赖时都用这个仓库）
+        4、resources下面是web资源文件,templates文件夹中存放网页（springboot会自动在这文件夹下寻找网页）
+            static中存放静态文件
+            application.properties是个配置文件，配置springboot
+        5、编写spingBoot中web-Mvc的控制器和项目启动入口
+
+
+    eclipse：http://blog.csdn.net/linzhiqiang0316/article/details/52589789
+
+    步骤：
+        1、
+
+4、搭建mybatis
+
+5、添加日志系统
+    1、新建一个logback-spring.xml文件（在文件夹中）
+    2、修改application.properties配置文件，添加如下语句：
+        #log
+        logging.config=classpath:logback-spring.xml
+        logging.path=log
+        logging.level.*=info
+    3、在所需要输出日志的地方使用：
+        private static final Logger logger = LoggerFactory.getLogger(DeptMaintainController.class);//新建日志对象
+        logger.info("");
+        logger.error("")
