@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="socket"/>
+	<classpathentry kind="src" path="dataType"/>
+	<classpathentry kind="src" path="String"/>
+	<classpathentry kind="src" path="Scanner"/>
+	<classpathentry kind="src" path="Array"/>
+	<classpathentry kind="src" path="Class"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
