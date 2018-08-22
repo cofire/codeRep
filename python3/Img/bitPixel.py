@@ -40,7 +40,7 @@ def hexAddZero(hexStr):
         hexStr = '0' + hexStr
     return hexStr
 
-name = "yatou.jpg"
+name = "wy.jpg"
 imgPath = "imgs/"
 excelPath = "excels/"
 
@@ -49,7 +49,7 @@ width = img.width
 height = img.height
 
 # 判断图片是否旋转过
-RollType = True
+RollType = False
 
 # img_array["列",行]
 img_array=img.load()

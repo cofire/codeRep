@@ -7,5 +7,6 @@
 	<classpathentry kind="src" path="Scanner"/>
 	<classpathentry kind="src" path="Array"/>
 	<classpathentry kind="src" path="Class"/>
+	<classpathentry kind="src" path="designPattern"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

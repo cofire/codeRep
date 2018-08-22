@@ -20,7 +20,7 @@ def get_char(r, g, b, alpha=256):  # alpha透明度
 
 if __name__ == '__main__':
 
-   name = "test.jpg"
+   name = "wy.jpg"
    imgPath = "imgs/"
    txtsPath = "txt/"
 
