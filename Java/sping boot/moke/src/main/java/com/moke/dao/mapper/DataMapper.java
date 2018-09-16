@@ -2,13 +2,11 @@ package com.moke.dao.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.moke.dao.domain.Data;
 import com.moke.dao.domain.DataExample;
 
-@Mapper
 public interface DataMapper {
     long countByExample(DataExample example);
 
