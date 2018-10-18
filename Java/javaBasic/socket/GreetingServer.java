@@ -1,51 +1,48 @@
-import java.net.*;
-import java.io.*;
- 
-public class GreetingServer extends Thread
-{
-   private ServerSocket serverSocket;
-   
-   public GreetingServer(int port) throws IOException
-   {
-      serverSocket = new ServerSocket(port);
-      serverSocket.setSoTimeout(10000);
-   }
- 
-   public void run()
-   {
-      while(true)
-      {
-         try
-         {
-            System.out.println("ç­‰å¾…è¿œç¨‹è¿æ¥ï¼Œç«¯å£å·ä¸ºï¼š" + serverSocket.getLocalPort() + "...");
-            Socket server = serverSocket.accept();
-            System.out.println("è¿œç¨‹ä¸»æœºåœ°å€ï¼š" + server.getRemoteSocketAddress());
-            DataInputStream in = new DataInputStream(server.getInputStream());
-            System.out.println(in.readUTF());
-            DataOutputStream out = new DataOutputStream(server.getOutputStream());
-            out.writeUTF("è°¢è°¢è¿æ¥æˆ‘ï¼š" + server.getLocalSocketAddress() + "\nGoodbye!");
-            server.close();
-         }catch(SocketTimeoutException s)
-         {
-            System.out.println("Socket timed out!");
-            break;
-         }catch(IOException e)
-         {
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketTimeoutException;
+
+public class GreetingServer extends Thread {
+    private ServerSocket serverSocket;
+
+    public GreetingServer(int port) throws IOException {
+        serverSocket = new ServerSocket(port);
+        serverSocket.setSoTimeout(100000);
+    }
+
+    public void run() {
+        while (true) {
+            try {
+                System.out.println("µÈ´ıÔ¶³ÌÁ¬½Ó£¬¶Ë¿ÚºÅÎª£º" + serverSocket.getLocalPort() + "...");
+                Socket server = serverSocket.accept();
+                System.out.println("Ô¶³ÌÖ÷»úµØÖ·£º" + server.getRemoteSocketAddress());
+                DataInputStream in = new DataInputStream(server.getInputStream());
+                System.out.println(in.readUTF());
+                DataOutputStream out = new DataOutputStream(server.getOutputStream());
+                out.writeUTF("Ğ»Ğ»Á¬½ÓÎÒ£º" + server.getLocalSocketAddress() + "\nGoodbye!");
+                server.close();
+            } catch (SocketTimeoutException s) {
+                System.out.println("Socket timed out!");
+                break;
+            } catch (IOException e) {
+                e.printStackTrace();
+                break;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        // int port = Integer.parseInt(args[0]);
+        int port = 6066;
+
+        try {
+            Thread t = new GreetingServer(port);
+            t.run();
+        } catch (IOException e) {
             e.printStackTrace();
-            break;
-         }
-      }
-   }
-   public static void main(String [] args)
-   {
-      int port = Integer.parseInt(args[0]);
-      try
-      {
-         Thread t = new GreetingServer(port);
-         t.run();
-      }catch(IOException e)
-      {
-         e.printStackTrace();
-      }
-   }
+        }
+    }
 }

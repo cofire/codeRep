@@ -8,5 +8,11 @@
 	<classpathentry kind="src" path="Array"/>
 	<classpathentry kind="src" path="Class"/>
 	<classpathentry kind="src" path="designPattern"/>
+	<classpathentry kind="src" path="Runnable"/>
+	<classpathentry kind="src" path="structure"/>
+	<classpathentry kind="src" path="Generics"/>
+	<classpathentry kind="src" path="Serializable"/>
+	<classpathentry kind="src" path="mail"/>
+	<classpathentry kind="lib" path="C:/Users/应/Downloads/mail.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
