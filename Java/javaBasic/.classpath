@@ -12,7 +12,7 @@
 	<classpathentry kind="src" path="structure"/>
 	<classpathentry kind="src" path="Generics"/>
 	<classpathentry kind="src" path="Serializable"/>
-	<classpathentry kind="src" path="mail"/>
-	<classpathentry kind="lib" path="C:/Users/应/Downloads/mail.jar"/>
+	<classpathentry kind="src" path="utils"/>
+	<classpathentry kind="src" path="Test"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

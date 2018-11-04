@@ -5,6 +5,7 @@
 	<classPathEntry location="C:\github\repository\mysql\mysql-connector-java\5.1.35\mysql-connector-java-5.1.35.jar" /> 
 	<!-- <classPathEntry location="C:\oracle\product\10.2.0\db_1\jdbc\lib\ojdbc14.jar" />-->
 	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
 		<commentGenerator>
 			<property name="suppressAllComments" value="true" />
 		</commentGenerator>
@@ -16,16 +17,16 @@
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
 		<!-- 生成模型的包名和位置 -->
-		<javaModelGenerator targetPackage="com.merck.dao.domain" targetProject="merck/src/main/java">
+		<javaModelGenerator targetPackage="com.merck.dao.domain" targetProject="merckActrl/src/test/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 		<!-- 生成的映射文件包名和位置 -->
-		<sqlMapGenerator targetPackage="orm.mapper" targetProject="merck/src/main/resources">
+		<sqlMapGenerator targetPackage="orm.mapper" targetProject="merckActrl/src/test/resources">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 		<!-- 生成DAO的包名和位置 -->
-		<javaClientGenerator type="XMLMAPPER" targetPackage="com.merck.dao.mapper" targetProject="merck/src/main/java">
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.merck.dao.mapper" targetProject="merckActrl/src/test/java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		<!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
