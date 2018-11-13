@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>内部员工</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 引入 Bootstrap -->
+<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	th:href="@{/bootstrap/css/bootstrapValidator.min.css}">
+<link rel="stylesheet" th:href="@{/css/supplier.css}">
+<!-- HTML5 Shiv 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+<!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+<!--[if lt IE 9]>
+         <script th:src="@{/jquery/html5shiv.js}"></script> 
+         <script th:src="@{/jquery/respond.min.js}"></script> 
+      <![endif]-->
+<link rel="stylesheet" th:href="@{/css/employee.css}">
+</head>
+<body>
+	<div class="container-fluid body">
+		<div class="row head">
+			<a th:href="@{/visitor/choose}"> <span
+				class="back glyphicon glyphicon-chevron-left"></span></a><span
+				style="margin-left: -20px">员工访客登记</span>
+		</div>
+		<div class="row">
+			<div
+				class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center col-center-block">
+				<img th:src="@{/img/merck.jpg}" alt="" class="img">
+			</div>
+		</div>
+
+
+
+		<div class="row">
+			<form
+				class="col-lg-11 col-md-11 col-xs-11 col-sm-11 col-center-block"
+				action="employeeSave">
+				<div class="form-group">
+					<label>姓名</label> <input type="text" class="form-control"
+						id="employeeName" name="employeeName" />
+				</div>
+				<div class="form-group">
+					<label>员工编号</label> <input type="text" class="form-control"
+						id="employeeId" name="employeeId" />
+				</div>
+				<div class="form-group text-center">
+					<button type="button" id="submit" class="btn btn-primary">提交</button>
+				</div>
+			</form>
+		</div>
+
+		<div class="row">
+			<!-- 按钮触发模态框 -->
+			<button class="btn btn-primary btn-lg" data-toggle="modal"
+				data-target="#myModal" id="warnBtn" style="display: none">触发按钮</button>
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">
+								<img th:src="@{/img/sign-error-icon.png}" alt=""
+									class="errorImg">提示
+							</h4>
+						</div>
+						<div class="modal-body">
+							<span id="warnMessage"></span>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">确定</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+		</div>
+		<div class="row">
+			<div id="footer"
+				class="col-lg-12 col-md-12 col-xs-12 col-sm-12 col-center-block text-center">
+				Copyright © 2018-2020</div>
+		</div>
+	</div>
+	</div>
+
+	<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+	<script th:src="@{/jquery/jquery-3.3.1.min.js}"></script>
+	<!-- 包括所有已编译的插件 -->
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{/bootstrap/js/bootstrapValidator.min.js}"></script>
+	<!-- <script th:src="@{/js/supplier.js}"></script>  -->
+	<script th:src="@{/js/employee.js}"></script>
+</body>
+</html>

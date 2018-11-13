@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>选择访客类型</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- 引入 Bootstrap -->
+      <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+      <!-- HTML5 Shiv 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+      <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+      <!--[if lt IE 9]>
+         <script th:src="@{/jquery/html5shiv.js}"></script> 
+         <script th:src="@{/jquery/respond.min.js}"></script> 
+      <![endif]-->
+      <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+      <script th:src="@{/jquery/jquery-3.3.1.min.js}"></script>
+      <!-- 包括所有已编译的插件 -->
+      <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+      <script th:src="@{/js/ajaxfileupload.js}"></script>
+   </head>
+   <body>
+	   <div class="container-fluid body">
+        <div >
+            <img id="headPic" th:src="@{/img/merck.jpg}"  width="150px" height="150px" style="padding: 5px">
+            <input id="upload" name="file" accept="image/*" type="file" style="display: none"/>
+
+            <button id="submit_btn">提交</button>
+        </div>
+    </div>
+    <script>
+        $(function() {
+    //头像预览
+    $("#headPic").click(function () {
+        $("#upload").click(); //隐藏了input:file样式后，点击头像就可以本地上传
+        $("#upload").on("change",function(){
+           /*  var objUrl = getObjectURL(this.files[0]) ; //获取图片的路径，该路径不是图片在本地的路径
+            if (objUrl) {
+                $("#headPic").attr("src", objUrl) ; //将图片路径存入src中，显示出图片
+            } */
+        });
+    });
+
+     //图片上传
+    $("#submit_btn").click(function () {
+
+        var imgurl = document.getElementById("upload").value;
+
+        $.ajaxFileUpload({
+            url:"http://localhost:8080/merckActrl/pcEmployee/uploadPic",
+            fileElementId: "upload", //文件上传域的ID，这里是input的ID，而不是img的
+            dataType: 'json', //返回值类型 一般设置为json
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success: function (data) {
+                alert(data.code+" "+ data.msg);
+                if (data.code==200){
+
+                    $("#headPic").attr("src","./images/bg.png");
+                    //将图片换成默认的+图片
+                }
+            }
+
+        });
+
+
+    });
+
+});
+
+//建立一個可存取到該file的url
+function getObjectURL(file) {
+    var url = null ;
+    if (window.createObjectURL!=undefined) { // basic
+        url = window.createObjectURL(file) ;
+    } else if (window.URL!=undefined) { // mozilla(firefox)
+        url = window.URL.createObjectURL(file) ;
+    } else if (window.webkitURL!=undefined) { // webkit or chrome
+        url = window.webkitURL.createObjectURL(file) ;
+    }
+    return url ;
+}
+    </script>
+ 
+   </body>
+</html>

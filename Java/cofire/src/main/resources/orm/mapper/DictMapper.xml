@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cofire.dao.mapper.DictMapper">
+  <resultMap id="BaseResultMap" type="com.cofire.dao.domain.Dict">
+    <id column="GROUP_ID" jdbcType="VARCHAR" property="groupId" />
+    <id column="DICT_VALUE" jdbcType="VARCHAR" property="dictValue" />
+    <result column="GROUP_NAME" jdbcType="VARCHAR" property="groupName" />
+    <result column="DICT_NAME" jdbcType="VARCHAR" property="dictName" />
+    <result column="MODIFY_TIME" jdbcType="VARCHAR" property="modifyTime" />
+    <result column="MODIFY_USER" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="FILLER1" jdbcType="VARCHAR" property="filler1" />
+    <result column="FILLER2" jdbcType="VARCHAR" property="filler2" />
+    <result column="FILLER3" jdbcType="VARCHAR" property="filler3" />
+    <result column="FILLER4" jdbcType="VARCHAR" property="filler4" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    GROUP_ID, DICT_VALUE, GROUP_NAME, DICT_NAME, MODIFY_TIME, MODIFY_USER, FILLER1, FILLER2, 
+    FILLER3, FILLER4
+  </sql>
+  <select id="selectByExample" parameterType="com.cofire.dao.domain.DictExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from tb_dict
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitSize >= 0">
+      limit #{limitStart} , #{limitSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_dict
+    where GROUP_ID = #{groupId,jdbcType=VARCHAR}
+      and DICT_VALUE = #{dictValue,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from tb_dict
+    where GROUP_ID = #{groupId,jdbcType=VARCHAR}
+      and DICT_VALUE = #{dictValue,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cofire.dao.domain.DictExample">
+    delete from tb_dict
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cofire.dao.domain.Dict">
+    insert into tb_dict (GROUP_ID, DICT_VALUE, GROUP_NAME, 
+      DICT_NAME, MODIFY_TIME, MODIFY_USER, 
+      FILLER1, FILLER2, FILLER3, 
+      FILLER4)
+    values (#{groupId,jdbcType=VARCHAR}, #{dictValue,jdbcType=VARCHAR}, #{groupName,jdbcType=VARCHAR}, 
+      #{dictName,jdbcType=VARCHAR}, #{modifyTime,jdbcType=VARCHAR}, #{modifyUser,jdbcType=VARCHAR}, 
+      #{filler1,jdbcType=VARCHAR}, #{filler2,jdbcType=VARCHAR}, #{filler3,jdbcType=VARCHAR}, 
+      #{filler4,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cofire.dao.domain.Dict">
+    insert into tb_dict
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="groupId != null">
+        GROUP_ID,
+      </if>
+      <if test="dictValue != null">
+        DICT_VALUE,
+      </if>
+      <if test="groupName != null">
+        GROUP_NAME,
+      </if>
+      <if test="dictName != null">
+        DICT_NAME,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+      <if test="modifyUser != null">
+        MODIFY_USER,
+      </if>
+      <if test="filler1 != null">
+        FILLER1,
+      </if>
+      <if test="filler2 != null">
+        FILLER2,
+      </if>
+      <if test="filler3 != null">
+        FILLER3,
+      </if>
+      <if test="filler4 != null">
+        FILLER4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValue != null">
+        #{dictValue,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null">
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null">
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="filler1 != null">
+        #{filler1,jdbcType=VARCHAR},
+      </if>
+      <if test="filler2 != null">
+        #{filler2,jdbcType=VARCHAR},
+      </if>
+      <if test="filler3 != null">
+        #{filler3,jdbcType=VARCHAR},
+      </if>
+      <if test="filler4 != null">
+        #{filler4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cofire.dao.domain.DictExample" resultType="java.lang.Long">
+    select count(*) from tb_dict
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_dict
+    <set>
+      <if test="record.groupId != null">
+        GROUP_ID = #{record.groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictValue != null">
+        DICT_VALUE = #{record.dictValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupName != null">
+        GROUP_NAME = #{record.groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictName != null">
+        DICT_NAME = #{record.dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifyTime != null">
+        MODIFY_TIME = #{record.modifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifyUser != null">
+        MODIFY_USER = #{record.modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filler1 != null">
+        FILLER1 = #{record.filler1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filler2 != null">
+        FILLER2 = #{record.filler2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filler3 != null">
+        FILLER3 = #{record.filler3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filler4 != null">
+        FILLER4 = #{record.filler4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_dict
+    set GROUP_ID = #{record.groupId,jdbcType=VARCHAR},
+      DICT_VALUE = #{record.dictValue,jdbcType=VARCHAR},
+      GROUP_NAME = #{record.groupName,jdbcType=VARCHAR},
+      DICT_NAME = #{record.dictName,jdbcType=VARCHAR},
+      MODIFY_TIME = #{record.modifyTime,jdbcType=VARCHAR},
+      MODIFY_USER = #{record.modifyUser,jdbcType=VARCHAR},
+      FILLER1 = #{record.filler1,jdbcType=VARCHAR},
+      FILLER2 = #{record.filler2,jdbcType=VARCHAR},
+      FILLER3 = #{record.filler3,jdbcType=VARCHAR},
+      FILLER4 = #{record.filler4,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cofire.dao.domain.Dict">
+    update tb_dict
+    <set>
+      <if test="groupName != null">
+        GROUP_NAME = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null">
+        DICT_NAME = #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUser != null">
+        MODIFY_USER = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="filler1 != null">
+        FILLER1 = #{filler1,jdbcType=VARCHAR},
+      </if>
+      <if test="filler2 != null">
+        FILLER2 = #{filler2,jdbcType=VARCHAR},
+      </if>
+      <if test="filler3 != null">
+        FILLER3 = #{filler3,jdbcType=VARCHAR},
+      </if>
+      <if test="filler4 != null">
+        FILLER4 = #{filler4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GROUP_ID = #{groupId,jdbcType=VARCHAR}
+      and DICT_VALUE = #{dictValue,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cofire.dao.domain.Dict">
+    update tb_dict
+    set GROUP_NAME = #{groupName,jdbcType=VARCHAR},
+      DICT_NAME = #{dictName,jdbcType=VARCHAR},
+      MODIFY_TIME = #{modifyTime,jdbcType=VARCHAR},
+      MODIFY_USER = #{modifyUser,jdbcType=VARCHAR},
+      FILLER1 = #{filler1,jdbcType=VARCHAR},
+      FILLER2 = #{filler2,jdbcType=VARCHAR},
+      FILLER3 = #{filler3,jdbcType=VARCHAR},
+      FILLER4 = #{filler4,jdbcType=VARCHAR}
+    where GROUP_ID = #{groupId,jdbcType=VARCHAR}
+      and DICT_VALUE = #{dictValue,jdbcType=VARCHAR}
+  </update>
+</mapper>

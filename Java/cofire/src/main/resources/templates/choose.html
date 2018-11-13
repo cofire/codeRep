@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>选择访客类型</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- 引入 Bootstrap -->
+      <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+      <link rel="stylesheet" th:href="@{/css/choose.css}">
+      <!-- HTML5 Shiv 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+      <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+      <!--[if lt IE 9]>
+         <script th:src="@{/jquery/html5shiv.js}"></script> 
+         <script th:src="@{/jquery/respond.min.js}"></script> 
+      <![endif]-->
+   </head>
+   <body>
+	   <div class="container-fluid body">
+	        <div class="row">
+	            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center col-center-block">
+	                <img th:src="@{/img/merck.jpg}" alt="" class="img">
+	            </div>
+	        </div>
+	        <hr>
+	        <div class="row type">
+	            <a th:href="@{/visitor/ordinary}" class="col-lg-10 col-md-10 col-xs-10 col-sm-10 text-center col-center-block ordinary">
+				          普通访客
+				      </a>
+				<a th:href="@{/visitor/supplier}" class="col-lg-10 col-md-10 col-xs-10 col-sm-10 text-center col-center-block supplier">
+					供应商访客
+					</a>
+				<a th:href="@{/visitor/employee}" class="col-lg-10 col-md-10 col-xs-10 col-sm-10 text-center col-center-block employee">
+					员工通道
+				</a>
+	        </div>
+	        <div class="row">
+	            <div id="footer" class="col-lg-12 col-md-12 col-xs-12 col-sm-12 col-center-block text-center">
+	                Copyright © 2018-2020
+	            </div>
+	        </div>
+	    </div>
+ 
+      <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+      <script th:src="@{/jquery/jquery-3.3.1.min.js}"></script>
+      <!-- 包括所有已编译的插件 -->
+      <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+   </body>
+</html>

@@ -1,27 +1,27 @@
 package test;
 
 public class test {
+    public static int getLengthUnicode(String str) {
+        // sqlserver占2，oracle占3
+        // add by wzf 20140704 begin
+        // 如果传入值为null，则直接返回长度为0
+        if (str == null || "".equals(str)) {
+            return 0;
+        }
+        // add by wzf 20140704 end
+        int digit = 2;
+        String replacement = "";
+        for (int i = 0; i < digit; i++) {
+            replacement = replacement + "*";
+        }
+        String newStr = str.replaceAll("[^\\x00-\\xff| |.|,|(|)|’|\"|\\[|\\\\]]", replacement);
+        return newStr.length();
+    }
+
     public static void main(String[] args) {
-        Integer x = 126;
-        int y = 126;
-        System.out.println(x == y);
-
-        System.out.println(x.equals(y));
-
-        int a = 128;
-        int b = 128;
-        System.out.println(a == b);
-
-        String str1 = "abc";
-        String str2 = "abc";
-        System.out.println(str1 == str2);
-
-        System.out.println(str1.equals(str2));
-
-        String str3 = new String("abc");
-        String str4 = new String("abc");
-        System.out.println(str1 == str3);
-        System.out.println(str3 == str4);
-        System.out.print(str3.equals(str4));
+        String str = "ab.\\\\?fghijkl no_qrstuvwxyzabcdefgh[ijklmnopqrstuvwxyzabcdefghijkl";
+        System.out.print(getLengthUnicode(str));
+        System.out.println(str);
+        System.out.print(str.replaceAll("[^\\x00-\\xff]", "*"));
     }
 }
