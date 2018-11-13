@@ -15,6 +15,9 @@
 	<classpathentry kind="src" path="utils"/>
 	<classpathentry kind="src" path="Test"/>
 	<classpathentry kind="src" path="Redis"/>
+	<classpathentry kind="src" path="mail"/>
 	<classpathentry kind="lib" path="C:/work/repository/redis/clients/jedis/2.9.0/jedis-2.9.0.jar"/>
+	<classpathentry kind="lib" path="C:/work/repository/com/sun/mail/javax.mail/1.4.4/javax.mail-1.4.4.jar"/>
+	<classpathentry kind="lib" path="C:/work/repository/javax/activation/activation/1.1.1/activation-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
