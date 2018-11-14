@@ -12,7 +12,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-public class SendAttachMail {
+public class SendMixedMail {
 
     /**
      * @param args
@@ -31,25 +31,25 @@ public class SendAttachMail {
         session.setDebug(true);
         // 2、通过session得到transport对象
         Transport ts = session.getTransport();
-        // 3、使用邮箱的用户名和密码连上邮件服务器，发送邮件时，发件人需要提交邮箱的用户名和密码给smtp服务器，用户名和密码都通过验证之后才能够正常发送邮件给收件人。
+        // 3、连上邮件服务器
         ts.connect("smtp.163.com", "yli_666@163.com", "pwd");
         // 4、创建邮件
-        Message message = createAttachMail(session);
+        Message message = createMixedMail(session);
         // 5、发送邮件
         ts.sendMessage(message, message.getAllRecipients());
         ts.close();
     }
 
     /**
-     * @Method: createAttachMail
-     * @Description: 创建一封带附件的邮件
+     * @Method: createMixedMail
+     * @Description: 生成一封带附件和带图片的邮件
      * @Anthor:孤傲苍狼
      *
      * @param session
      * @return
      * @throws Exception
      */
-    public static MimeMessage createAttachMail(Session session) throws Exception {
+    public static MimeMessage createMixedMail(Session session) throws Exception {
         // 创建邮件
         MimeMessage message = new MimeMessage(session);
 
@@ -60,31 +60,43 @@ public class SendAttachMail {
 
         // 正文
         MimeBodyPart text = new MimeBodyPart();
-        text.setContent("附件邮件", "text/html;charset=UTF-8");
+        text.setContent("xxx这是女的xxxx<br/><img src='cid:aaa.jpg'>", "text/html;charset=UTF-8");
 
-        // 附件
+        // 图片
+        MimeBodyPart image = new MimeBodyPart();
+        image.setDataHandler(new DataHandler(new FileDataSource("src\\1.jpg")));
+        image.setContentID("aaa.jpg");
+
+        // 附件1
         MimeBodyPart attach = new MimeBodyPart();
-        DataHandler dh = new DataHandler(new FileDataSource("src\\1.jpg"));
+        DataHandler dh = new DataHandler(new FileDataSource("src\\4.rar"));
         attach.setDataHandler(dh);
         attach.setFileName(dh.getName());
 
-        // 创建容器描述数据关系
-        MimeMultipart mp = new MimeMultipart();
-        mp.addBodyPart(text);
-        mp.setSubType("related");
+        // 附件2
+        // MimeBodyPart attach2 = new MimeBodyPart();
+        // DataHandler dh2 = new DataHandler(new FileDataSource("src\\波子.zip"));
+        // attach2.setDataHandler(dh2);
+        // attach2.setFileName(MimeUtility.encodeText(dh2.getName()));
+
+        // 描述关系:正文和图片
+        MimeMultipart mp1 = new MimeMultipart();
+        mp1.addBodyPart(text);
+        mp1.addBodyPart(image);
+        mp1.setSubType("related");
 
         // 描述关系:正文和附件
-        MimeMultipart mp1 = new MimeMultipart();
-        mp1.addBodyPart(attach);
+        MimeMultipart mp2 = new MimeMultipart();
+        mp2.addBodyPart(attach);
         // mp2.addBodyPart(attach2);
 
         // 代表正文的bodypart
         MimeBodyPart content = new MimeBodyPart();
-        content.setContent(mp);
-        mp1.addBodyPart(content);
-        mp1.setSubType("mixed");
+        content.setContent(mp1);
+        mp2.addBodyPart(content);
+        mp2.setSubType("mixed");
 
-        message.setContent(mp1);
+        message.setContent(mp2);
         message.saveChanges();
 
         // message.writeTo(new FileOutputStream("E:\\MixedMail.eml"));
